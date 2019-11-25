@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <title>Recruitment task</title>
-  </head>
-  <body>
+</head>
+<body>
+    <h1 class="page-head">Web Components Playground!</h1>
     <main>
-        This is a WebPack 4 Starter App!
+        <h2>Custom Elements</h2>
+        <div id="custom-elements" class="custom-elements">
+            <slick-tabs id="by-markup"></slick-tabs>
+        </div>
+
+        <h2>Custom Elements Extended</h2>
+        <div id="custom-elements-extension" class="custom-elements">
+            <p is="slick-tabs-extension"></p>
+        </div>
     </main>
     <script src="/bundle.js"></script>
-  </body>
+</body>
 </html>
