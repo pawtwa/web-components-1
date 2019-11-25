@@ -40,7 +40,7 @@
     <p>Elements inserted into template contents are called <strong>distributed nodes</strong></p>
     <div id="shadow-dom-host" class="custom-elements">
         <shadow-dom-host>
-            <p class="description">This is the description to insert</p>
+            <p slot="description">This is the description to insert</p>
             <p>This is the rest of the content to insert</p>
         </shadow-dom-host>
     </div>
@@ -82,10 +82,10 @@
             lightDOMJsFunction();
         }, 1000);
     </script>
-    <content select="h3.to-insert"></content>
+    <slot name="to-insert"></slot>
     <h4>A way to show encapsulation - pure template content (not inserted)</h4>
-    <content select="p.description"></content>
-    <content></content>
+    <slot name="description"></slot>
+    <slot></slot>
 </template>
 <script src="/bundle.js"></script>
 </body>

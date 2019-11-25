@@ -13,7 +13,7 @@ const ShadowDOMHost = (function() {
         shadowDOMHostCounter++;
         console.log(`ShadowDOMHost: ${shadowDOMHostCounter}`, this);
         this.innerHTML = `<h3>Attention!</h3>
-            <h3 class="to-insert">My ${shadowDOMHostCounter} ShadowDOMHost custom element for hosting Shadow DOM!</h3>
+            <h3 slot="to-insert">My ${shadowDOMHostCounter} ShadowDOMHost custom element for hosting Shadow DOM!</h3>
             ${this.innerHTML}`;
         this.style.display = 'inline-block';
         this.style.paddingLeft = '1em';
