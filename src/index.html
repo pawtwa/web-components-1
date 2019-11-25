@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <title>Recruitment task</title>
-  </head>
-  <body>
-    <main>
-        This is a WebPack 4 Starter App!
-    </main>
-    <script src="/bundle.js"></script>
-  </body>
+    <script>
+        function lightDOMJsFunction() {
+            alert('This is Light DOM function invoked in Shadow DOM script');
+            setTimeout(function() {
+                console.log('h3 elements queried on document from Light DOM', document.querySelectorAll('h3'));
+                shadowDOMJsFunction();
+            }, 3000);
+        }
+    </script>
+</head>
+<body>
+<h1 class="page-head">Web Components Playground!</h1>
+<main>
+    <h2 class="section-head">Shadow DOM host</h2>
+    <p>Shadow DOM is a piece of `document` called `document-fragment`</p>
+    <p>Wait 3 seconds... and then yet 3 seconds after clicking a first alert...</p>
+    <div id="shadow-dom-host" class="custom-elements">
+        <shadow-dom-host></shadow-dom-host>
+    </div>
+</main>
+<template>
+    <style>
+        h4 {
+            color: blue;
+        }
+    </style>
+    <script>
+        function shadowDOMJsFunction() {
+            alert('This is Shadow DOM function invoked in Light DOM script');
+            console.log('h3 elements queried on document from Shadow DOM', document.querySelectorAll('h3'));
+        }
+        lightDOMJsFunction();
+    </script>
+    <h3>This is my first Shadow DOM content</h3>
+    <h4>A way to show encapsulation</h4>
+</template>
+<script src="/bundle.js"></script>
+</body>
 </html>
