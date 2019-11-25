@@ -2,12 +2,37 @@
   text-align: center;
 }
 
+.page-desc {
+  padding: 20px;
+  margin: 0 20px;
+  background-color: #0006b6;
+  color: white;
+  font-size: 36px;
+  font-weight: bolder;
+  text-align: center;
+}
+
 .section-head {
   margin-top: 40px;
 }
 
 .custom-elements {
   padding: 20px 20px 20px 20px;
+}
+
+#alert-box {
+  p {
+    background-color: rgba(182,41,37,0.74);
+    padding: 10px;
+
+    &.success {
+      background-color: rgba(52, 182, 50, 0.67);
+      padding: 10px;
+      font-size: 130%;
+      font-weight: bolder;
+      text-align: center;
+    }
+  }
 }
 
 main {

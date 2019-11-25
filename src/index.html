@@ -6,10 +6,25 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <title>Recruitment task</title>
     <script>
+        const afterTimerLogStyle = 'background: #222; color: #bada55; padding: 3px;';
+        const timerName = 'App execution';
+        console.time(timerName);
+
+        console.log('%cglobal script', afterTimerLogStyle);
+        console.timeLog(timerName);
+
         function lightDOMJsFunction() {
-            alert('This is Light DOM function invoked in Shadow DOM script');
+            console.log('%clightDOMJsFunction', afterTimerLogStyle);
+            console.timeLog(timerName);
+
+            const alertEl = document.createElement('p');
+            alertEl.innerText = 'This is Light DOM function invoked in Shadow DOM script';
+            document.getElementById('alert-box').appendChild(alertEl);
             setTimeout(function() {
-                console.log('h3 elements queried on document from Light DOM', document.querySelectorAll('h3'));
+                console.log('%clightDOMJsFunction -> setTimeout:3000', afterTimerLogStyle);
+                console.timeLog(timerName);
+
+                console.log('`p` elements queried on document from Light DOM', document.querySelectorAll('p'));
                 shadowDOMJsFunction();
             }, 3000);
         }
@@ -17,15 +32,19 @@
 </head>
 <body>
 <h1 class="page-head">Web Components Playground!</h1>
+<p id="page-desc-1" class="page-desc">Wait about 8 seconds until a green alert appears.</p>
 <main>
     <h2 class="section-head">Shadow DOM host</h2>
+    <div id="alert-box"></div>
     <p>Shadow DOM is a piece of `document` called `document-fragment`</p>
-    <p>Wait 3 seconds... and then yet 3 seconds after clicking a first alert...</p>
     <div id="shadow-dom-host" class="custom-elements">
-        <shadow-dom-host></shadow-dom-host>
+        <shadow-dom-host>
+            <p class="description">This is the description to insert</p>
+            <p>This is the rest of the content to insert</p>
+        </shadow-dom-host>
     </div>
 </main>
-<template>
+<template id="shadow-dom-host-template">
     <style>
         h4 {
             color: blue;
@@ -33,13 +52,39 @@
     </style>
     <script>
         function shadowDOMJsFunction() {
-            alert('This is Shadow DOM function invoked in Light DOM script');
-            console.log('h3 elements queried on document from Shadow DOM', document.querySelectorAll('h3'));
+            console.log('%cshadowDOMJsFunction', afterTimerLogStyle);
+            console.timeLog(timerName);
+
+            const alertEl = document.createElement('p');
+            alertEl.innerText = 'This is Shadow DOM function invoked in Light DOM script';
+            document.getElementById('alert-box').appendChild(alertEl);
+            console.log('`p` elements queried on document from Shadow DOM', document.querySelectorAll('p'));
+            setTimeout(() => {
+                console.log('%c' + timerName + ' end: shadowDOMJsFunction -> setTimeout:1000', afterTimerLogStyle);
+                console.timeEnd(timerName);
+
+                const alertEl = document.createElement('p');
+                alertEl.classList.add('success');
+                alertEl.innerText = 'Now take a look at the logs - analyze them :)';
+                document.getElementById('alert-box').appendChild(alertEl);
+
+                const pageDesc1El = document.getElementById('page-desc-1');
+                pageDesc1El.style.backgroundColor = 'rgba(52, 182, 50, 0.67)';
+                pageDesc1El.style.color = 'black';
+                pageDesc1El.innerText = 'DONE!!!';
+            }, 1000);
         }
-        lightDOMJsFunction();
+        setTimeout(() => {
+            console.log('%ctemplate script -> setTimeout:1000', afterTimerLogStyle);
+            console.timeLog(timerName);
+
+            lightDOMJsFunction();
+        }, 1000);
     </script>
-    <h3>This is my first Shadow DOM content</h3>
-    <h4>A way to show encapsulation</h4>
+    <content select="h3.to-insert"></content>
+    <h4>A way to show encapsulation - pure template content (not inserted)</h4>
+    <content select="p.description"></content>
+    <content></content>
 </template>
 <script src="/bundle.js"></script>
 </body>
