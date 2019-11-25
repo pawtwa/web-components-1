@@ -1,6 +1,6 @@
 const SlickTabs = (function() {
     /**
-     * My first custom element!
+     * SlickTabs - custom element!
      */
 
     let slickTabsCounter = 0;

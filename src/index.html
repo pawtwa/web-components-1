@@ -9,14 +9,19 @@
 <body>
     <h1 class="page-head">Web Components Playground!</h1>
     <main>
-        <h2>Custom Elements</h2>
+        <h2 class="section-head">Custom Element</h2>
         <div id="custom-elements" class="custom-elements">
             <slick-tabs id="by-markup"></slick-tabs>
         </div>
 
-        <h2>Custom Elements Extended</h2>
+        <h2 class="section-head">Custom Element Extension</h2>
         <div id="custom-elements-extension" class="custom-elements">
             <p is="slick-tabs-extension"></p>
+        </div>
+
+        <h2 class="section-head">Custom Element using lifecycle callbacks methods</h2>
+        <div id="custom-elements-lifecycle" class="custom-elements">
+            <hello-world></hello-world>
         </div>
     </main>
     <script src="/bundle.js"></script>

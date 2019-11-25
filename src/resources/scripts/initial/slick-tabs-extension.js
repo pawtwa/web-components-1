@@ -1,6 +1,6 @@
 const SlickTabsExtension = (function() {
     /**
-     * My first custom element extended!
+     * SlickTabsExtension - custom element extension!
      */
 
     let slickTabsExtensionCounter = 0;
