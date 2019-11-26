@@ -52,8 +52,11 @@ shadow-dom-host /deep/ em, input, small {
   background-color: red;
 }
 
-shadow-dom-host:unresolved {
+shadow-dom-host:unresolved,
+foo-custom-element:unresolved {
   background-color: black;
   color: white;
   display: block;
+  padding: 20px;
+  margin-bottom: 20px;
 }
