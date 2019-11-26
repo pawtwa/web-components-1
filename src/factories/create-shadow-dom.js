@@ -16,7 +16,17 @@ const createShadowDOM = (host, template) => {
             };
         };
 
+        const fn2 = (source) => {
+            return (event) => {
+                if (clickEventDisabled) {
+                    return;
+                }
+                alert(`shadow root ${source}: ${event.target.tagName}${event.target.id ? `#${event.target.id}` : ''}${event.target.className ? `.${event.target.className.replace(/\s/g, '.')}` : ''}` + ' was clicked')
+            };
+        };
+
         root.addEventListener('change', fn('root'));
+        root.addEventListener('click', fn2('root'));
 
         console.log('shadowRoot mode `closed`: host.shadowRoot - ', host.shadowRoot, '; host.attachShadow return - ', root);
         console.log('`p` elements queried on Shadow DOM Host from Shadow DOM Host after Shadow DOM root creating', host.querySelectorAll('p'));
@@ -26,6 +36,9 @@ const createShadowDOM = (host, template) => {
 
         const selectEl = root.getElementById('shadow-dom-select');
         selectEl.addEventListener('change', fn('select'));
+
+        const btnEl = root.getElementById('shadow-dom-button');
+        btnEl.addEventListener('click', fn2('button'));
 
         console.log('`p` elements queried on Shadow DOM root from Shadow DOM root after appending its imported template with insertions', root.querySelectorAll('p'));
         console.log('`content[select^=p]` elements queried on Shadow DOM root from Shadow DOM root after appending its imported template with insertions', root.querySelectorAll('content[select^=p]'));
