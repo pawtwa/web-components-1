@@ -11,15 +11,15 @@ setTimeout(() => {
 }, 3000);
 
 document.addEventListener('click', (event) => {
+    if (event.target.id === 'light-dom-button-disable-click') {
+        clickEventDisabled = !clickEventDisabled;
+        return;
+    }
     if (event.target.id === 'light-dom-button-click-shadow-dom-button') {
         const host = document.getElementsByTagName('shadow-dom-host')[0];
         const btnEl = host.shadowRoot.getElementById('shadow-dom-button');
         btnEl.dispatchEvent(new Event('click'));
-        return;
-    }
-    if (event.target.id === 'light-dom-button-disable-click') {
-        clickEventDisabled = !clickEventDisabled;
-        return;
+        // return;
     }
     if (
         clickEventDisabled
