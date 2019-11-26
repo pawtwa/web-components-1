@@ -1,0 +1,41 @@
+<template id="template-2">
+    <a id="view-disclaimer" href="#">View Disclaimer #2</a>
+    <p>Hello World! I am the very first! #2</p>
+</template>
+
+<div id="template-1">
+    <p>Hello World! I am the very first! #1</p>
+</div>
+
+<p id="disclaimer">This is a disclaimer! #1</p>
+<script>
+    const thisViewDocument = document.currentScript.ownerDocument;
+
+    thisViewDocument.querySelector('#template-1 p').style.backgroundColor = 'green';
+
+    function viewDisclaimerFn(event) {
+        console.log('viewDisclaimer');
+        if (event) {
+            event.preventDefault();
+        }
+        alert(thisViewDocument.querySelector('#disclaimer').innerText);
+        return false;
+    }
+
+    (function() {
+        const Proto = Object.create(HTMLElement.prototype);
+
+        Proto.createdCallback = function () {
+            const template = thisViewDocument.querySelector('template#template-2');
+            const clone = document.importNode(template.content, true);
+            const viewDisclaimer = clone.querySelector('#view-disclaimer');
+
+            viewDisclaimer.addEventListener('click', viewDisclaimerFn);
+
+            const root = this.attachShadow({mode: 'closed'});
+            root.appendChild(clone);
+        };
+
+        document.registerElement('first-import', {prototype: Proto});
+    })();
+</script>
