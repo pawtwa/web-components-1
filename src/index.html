@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <title>Recruitment task</title>
 
-      <link id="first-view-html" rel="import" href="./assets/views/first-view.html" />
-  </head>
-  <body>
-    <p>
-        <a href="#" onclick="return viewDisclaimerFn();">View Disclaimer #1</a>
-    </p>
-    <main>
-        <first-import></first-import>
-    </main>
-    <script src="/bundle.js"></script>
-  </body>
+    <script>
+        function importLoaded(event) {
+            alert('import loaded!');
+        }
+
+        function importError(event) {
+            alert('import error!');
+        }
+    </script>
+    <link id="first-view-html" rel="import" href="./assets/views/first-view.html" onload="importLoaded()"
+          onerror="importError()"/>
+</head>
+<body>
+<p>
+    <a href="#" onclick="viewDisclaimerFn();">View Disclaimer #1</a>
+</p>
+<main>
+    <first-import></first-import>
+</main>
+<script src="/bundle.js"></script>
+</body>
 </html>
