@@ -9,3 +9,8 @@ setTimeout(() => {
     const templateEl = document.querySelector('template#shadow-dom-host-template');
     createShadowDOM(shadowDOMHostEl, templateEl);
 }, 3000);
+
+document.addEventListener('click', (event) => {
+    console.log(event.target);
+    alert(`${event.target.tagName}${event.target.id ? `#${event.target.id}` : ''}${event.target.className ? `.${event.target.className.replace(/\s/g, '.')}` : ''}` + ' was clicked')
+});

@@ -31,13 +31,14 @@
     </script>
 </head>
 <body>
-<h1 class="page-head">Web Components Playground!</h1>
+<h1 class="page-head my-class">Web Components Playground!</h1>
 <p id="page-desc-1" class="page-desc">Wait about 8 seconds until a green alert appears.</p>
 <main>
     <h2 class="section-head">Shadow DOM host</h2>
     <div id="alert-box"></div>
     <p>Shadow DOM as a piece of `document` is called <strong>document-fragment</strong></p>
     <p>Elements inserted into template contents are called <strong>distributed nodes</strong></p>
+    <p><button id="light-dom-button">Light Dom button</button></p>
     <div id="shadow-dom-host" class="custom-elements">
         <shadow-dom-host>
             <p slot="description">This is the description to insert</p>
@@ -86,6 +87,7 @@
     <h4>A way to show encapsulation - pure template content (not inserted)</h4>
     <slot name="description"></slot>
     <slot></slot>
+    <p><button id="shadow-dom-button">Shadow Dom button</button></p>
 </template>
 <script src="/bundle.js"></script>
 </body>
