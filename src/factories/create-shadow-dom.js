@@ -1,5 +1,5 @@
 const createShadowDOM = (host, template) => {
-    console.log('%ccreateShadowDOM', afterTimerLogStyle);
+    console.log(`%ccreateShadowDOM for ${host.tagName} with template ${template.id}`, afterTimerLogStyle);
     console.timeLog(timerName);
 
     if (host instanceof HTMLElement) {

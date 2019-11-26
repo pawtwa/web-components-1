@@ -47,3 +47,7 @@ shadow-dom-host::shadow h4,
 shadow-dom-host::shadow p {
   cursor: pointer;
 }
+
+shadow-dom-host /deep/ em, input, small {
+  background-color: red;
+}
