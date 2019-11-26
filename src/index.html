@@ -34,7 +34,7 @@
 </head>
 <body>
 <h1 class="page-head my-class">Web Components Playground!</h1>
-<p id="page-desc-1" class="page-desc">Wait about 8 seconds until a green alert appears.</p>
+<p id="page-desc-1" class="page-desc">Wait about 8.5 seconds until a green alert appears.</p>
 <main>
     <h2 class="section-head">Shadow DOM host</h2>
     <div id="alert-box"></div>
@@ -121,12 +121,15 @@
             <option value="4">4</option>
         </select>
     </p>
-    <shadow-dom-nested-host></shadow-dom-nested-host>
+    <shadow-dom-nested-host>Nested Custom Element `shadow-dom-nested-host` for Custom Element `shadow-dom-host`</shadow-dom-nested-host>
 </template>
 <template id="shadow-dom-nested-host-template">
-    <em>Shadom DOM nested!</em>
-    <input type="text" readonly value="Some input value" />
-    <small>Small text</small>
+    <slot></slot>
+    <div>
+        <em>Shadom DOM nested!</em>
+        <input type="text" readonly value="Some input value" />
+        <small>Small text</small>
+    </div>
 </template>
 <script src="/bundle.js"></script>
 </body>

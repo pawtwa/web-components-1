@@ -24,4 +24,4 @@ setTimeout(() => {
             h4.style.color = 'orange';
         }, 3000);
     });
-}, 3000);
+}, 3500);
