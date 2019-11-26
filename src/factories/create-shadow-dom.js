@@ -28,6 +28,14 @@ const createShadowDOM = (host, template) => {
             return prev;
         }, []));
 
+        console.log(Array.prototype.reduce.call(document.querySelectorAll('*'), (prev, element) => {
+            if (element.innerText === 'Attention!' || element.slot) {
+                console.log(element.assignedSlot, element.getDestinationInsertionPoints());
+                prev.push({[element.slot]: element});
+            }
+            return prev;
+        }, []));
+
         setTimeout(() => {
             console.log('%ccreateShadowDOM -> setTimeout:3000', afterTimerLogStyle);
             console.timeLog(timerName);
