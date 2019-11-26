@@ -1,4 +1,4 @@
-const createShadowDOM = (host, template) => {
+const createShadowDOM = (host, template, callback) => {
     console.log(`%ccreateShadowDOM for ${host.tagName} with template ${template.id}`, afterTimerLogStyle);
     console.timeLog(timerName);
 
@@ -34,12 +34,6 @@ const createShadowDOM = (host, template) => {
 
         root.appendChild(document.importNode(template.content, true));
 
-        const selectEl = root.getElementById('shadow-dom-select');
-        selectEl.addEventListener('change', fn('select'));
-
-        const btnEl = root.getElementById('shadow-dom-button');
-        btnEl.addEventListener('click', fn2('button'));
-
         console.log('`p` elements queried on Shadow DOM root from Shadow DOM root after appending its imported template with insertions', root.querySelectorAll('p'));
         console.log('`content[select^=p]` elements queried on Shadow DOM root from Shadow DOM root after appending its imported template with insertions', root.querySelectorAll('content[select^=p]'));
 
@@ -63,13 +57,9 @@ const createShadowDOM = (host, template) => {
             return prev;
         }, []));
 
-        setTimeout(() => {
-            console.log('%ccreateShadowDOM -> setTimeout:3000', afterTimerLogStyle);
-            console.timeLog(timerName);
-
-            const h4 = root.querySelector('h4');
-            h4.style.color = 'orange';
-        }, 3000);
+        if (typeof callback === 'function') {
+            callback(root, {fn, fn2});
+        }
     }
 };
 
