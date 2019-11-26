@@ -8,19 +8,21 @@
 
     <script>
         function importLoaded(event) {
-            alert('import loaded!');
+            console.log('import loaded!', event);
         }
 
         function importError(event) {
-            alert('import error!');
+            console.log('import error!', event);
         }
     </script>
-    <link id="first-view-html" rel="import" href="./assets/views/first-view.html" onload="importLoaded()"
-          onerror="importError()"/>
+    <link id="first-view-html" rel="import" href="./assets/views/first-view.html" onload="importLoaded(event)"
+          onerror="importError(event)"/>
+    <link id="second-view-html" rel="import" href="./assets/views/second-view.html" onload="importLoaded(event)"
+          onerror="importError(event)"/>
 </head>
 <body>
 <p>
-    <a href="#" onclick="viewDisclaimerFn();">View Disclaimer #1</a>
+    <a href="#" onclick="viewDisclaimerFn(event);">View Disclaimer #1</a>
 </p>
 <main>
     <first-import></first-import>
