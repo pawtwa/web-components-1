@@ -5,13 +5,27 @@ const createShadowDOM = (host, template) => {
     if (host instanceof HTMLElement) {
         console.log('`p` elements queried on Shadow DOM Host from Shadow DOM Host before its Shadow DOM root creating', host.querySelectorAll('p'));
 
-        const root = host.attachShadow({mode: "closed"});
+        const root = host.attachShadow({mode: "open"});
+
+        const fn = (source) => {
+            return (event) => {
+                if (!clickEventDisabled) {
+                    return;
+                }
+                alert(`shadow root ${source}: ${event.target.tagName}${event.target.id ? `#${event.target.id}` : ''}${event.target.className ? `.${event.target.className.replace(/\s/g, '.')}` : ''}` + ' was changed')
+            };
+        };
+
+        root.addEventListener('change', fn('root'));
 
         console.log('shadowRoot mode `closed`: host.shadowRoot - ', host.shadowRoot, '; host.attachShadow return - ', root);
         console.log('`p` elements queried on Shadow DOM Host from Shadow DOM Host after Shadow DOM root creating', host.querySelectorAll('p'));
         console.log('`p` elements queried on Shadow DOM root from Shadow DOM after Shadow DOM root creating', root.querySelectorAll('p'));
 
         root.appendChild(document.importNode(template.content, true));
+
+        const selectEl = root.getElementById('shadow-dom-select');
+        selectEl.addEventListener('change', fn('select'));
 
         console.log('`p` elements queried on Shadow DOM root from Shadow DOM root after appending its imported template with insertions', root.querySelectorAll('p'));
         console.log('`content[select^=p]` elements queried on Shadow DOM root from Shadow DOM root after appending its imported template with insertions', root.querySelectorAll('content[select^=p]'));

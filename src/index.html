@@ -13,6 +13,8 @@
         console.log('%cglobal script', afterTimerLogStyle);
         console.timeLog(timerName);
 
+        let clickEventDisabled = false;
+
         function lightDOMJsFunction() {
             console.log('%clightDOMJsFunction', afterTimerLogStyle);
             console.timeLog(timerName);
@@ -38,7 +40,17 @@
     <div id="alert-box"></div>
     <p>Shadow DOM as a piece of `document` is called <strong>document-fragment</strong></p>
     <p>Elements inserted into template contents are called <strong>distributed nodes</strong></p>
-    <p><button id="light-dom-button">Light Dom button</button></p>
+    <p>
+        <button id="light-dom-button-disable-click">Disable/enable click event listener</button>
+        <button id="light-dom-button">Light Dom button</button>
+        <select id="light-dom-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <button id="light-dom-button-change-shadow-dom-select">Change Shadow Dom select</button>
+    </p>
     <div id="shadow-dom-host" class="custom-elements">
         <shadow-dom-host>
             <p slot="description">This is the description to insert</p>
@@ -87,7 +99,15 @@
     <h4>A way to show encapsulation - pure template content (not inserted)</h4>
     <slot name="description"></slot>
     <slot></slot>
-    <p><button id="shadow-dom-button">Shadow Dom button</button></p>
+    <p>
+        <button id="shadow-dom-button">Shadow Dom button</button>
+        <select id="shadow-dom-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </p>
 </template>
 <script src="/bundle.js"></script>
 </body>
